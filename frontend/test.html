@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test HTMLkokokokoko</title>
+    <title>ระบบติดตามลูกค้า - TMK Group</title>
     <link rel="stylesheet" href="csstest.css">
 </head>
 <body>
-    <div style="display: flex; align-items:center">
+    <!-- Header Section -->
+    <div class="header-container">
         <div class="container">
             <div class="flexRow">
                 <div class="imgCol" style="display: flex; align-items: center;">
@@ -19,23 +20,82 @@
             </div>
         </div>
     </div>
-    <table class="HeaderTable" id="HeaderTable">
-        <tr>
-            <th>Customers ID</th>
-            <th>Full Name</th>
-            <th>ขาดนำส่ง</th>
-            <th>ผลการติดตาม</th>
-        </tr>
-        <tr>
-            <td><input type="number" placeholder="เลขลูกค้า" /></td>
-            <td><input type="text" placeholder="ชื่อลูกค้า" /></td>
-            <td><input type="number" placeholder="ขาดนำส่งกี่วัน"/></td>
-            <td><input type="text" placeholder="ผลการติดตาม" /></td>
-            <td><button class="SaveRowButton" onclick="saveRow(this)">บันทึก</button></td>
-        </tr>
-    </table>
-    <button class="AddrowButton" onclick="addRow()">AddRow</button>
-    <button class="DeleteRowButton" onclick="deleteRow()">DeleteRow</button>
+
+    <!-- Sticky Navigation -->
+    <div id="stickyNav" class="sticky-nav">
+        <div class="nav-container">
+            <button id="dataEntryBtn" class="nav-btn active" onclick="showDataEntry()">
+                <i class="icon">📝</i>
+                การบันทึกข้อมูล
+            </button>
+            <button id="exportBtn" class="nav-btn" onclick="showExport()">
+                <i class="icon">📊</i>
+                ผลการส่งออก
+            </button>
+        </div>
+    </div>
+
+    <!-- Data Entry Page -->
+    <div id="dataEntryPage" class="page active">
+        <div class="container">
+            <!-- CSV Upload Section -->
+            <div class="upload-section">
+                <h3>นำเข้าข้อมูลลูกค้า</h3>
+                <div class="upload-container">
+                    <input type="file" id="csvFile" accept=".csv" onchange="handleFileUpload(event)">
+                    <label for="csvFile" class="upload-btn">
+                        <i class="icon">📁</i>
+                        เลือกไฟล์ CSV
+                    </label>
+                    <span id="fileName" class="file-name"></span>
+                </div>
+            </div>
+
+            <!-- Data Table Section -->
+            <div id="tableSection" class="table-section" style="display: none;">
+                <div class="table-header">
+                    <h3>ข้อมูลลูกค้า</h3>
+                    <div class="table-info">
+                        <span id="tableInfo" style="color: #7f8c8d; font-size: 14px;">
+                            กรุณาใส่ข้อมูลการติดตามและกดปุ่มบันทึกในแต่ละแถว
+                        </span>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="customerTable" class="customer-table">
+                        <thead id="tableHead"></thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Page -->
+    <div id="exportPage" class="page">
+        <div class="container">
+            <div class="export-section">
+                <h3>ผลการส่งออกข้อมูล</h3>
+                <div class="export-controls">
+                    <button onclick="exportToCSV()" class="export-btn">
+                        <i class="icon">📄</i>
+                        ส่งออก CSV
+                    </button>
+                    <button onclick="exportToExcel()" class="export-btn">
+                        <i class="icon">📊</i>
+                        ส่งออก Excel
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="exportTable" class="customer-table">
+                        <thead id="exportTableHead"></thead>
+                        <tbody id="exportTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <script src="JsTest.js"></script>
 </body>
 </html>

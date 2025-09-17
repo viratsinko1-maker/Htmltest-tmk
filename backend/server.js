@@ -13,13 +13,15 @@ app.use(express.static('../frontend'));
 
 // SQL Server configuration
 const config = {
-    user: process.env.DB_USER || 'your-username',
-    password: process.env.DB_PASSWORD || 'your-password',
-    server: process.env.DB_SERVER || 'your-server',
-    database: process.env.DB_DATABASE || 'your-database',
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    server: process.env.DB_SERVER,
+    database: process.env.DB_DATABASE,
+    port: parseInt(process.env.DB_PORT) || 1433,
     options: {
-        encrypt: true,
-        trustServerCertificate: true
+        encrypt: false,
+        trustServerCertificate: true,
+        enableArithAbort: true
     }
 };
 
@@ -35,11 +37,11 @@ async function testConnection() {
 
 // API Routes
 
-// Get all customers
+// Get all customers from vw_CustomerTrackingReport
 app.get('/api/customers', async (req, res) => {
     try {
         await sql.connect(config);
-        const result = await sql.query`SELECT * FROM customers`;
+        const result = await sql.query`SELECT * FROM [PalmCenter].[dbo].[vw_CustomerTrackingReport]`;
         res.json(result.recordset);
     } catch (err) {
         console.error('Error fetching customers:', err);

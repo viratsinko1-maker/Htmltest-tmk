@@ -1,109 +1,609 @@
-/* ...existing code... */
-.DeleteRowButton {
-    margin-left: 15px;
-    padding: 8px 24px;
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
-    background: red;
-    color: wheat;
-    border: solid 1px black;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.2s;
+    background-color: #f0f8ff;
+    color: #333;
+    line-height: 1.6;
 }
-.DeleteRowButton:hover {
-    background: darkred;
-}
-.AddrowButton {
-    margin-top: 16px;
-    padding: 8px 24px;
-    font-size: 16px;
-    background: blue;
-    color: black;
-    border: solid 1px black;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-.AddrowButton:hover {
-    background: darkblue;
-}
-.HeaderTable input::placeholder {
-    font-size: 12px;
-}
+
 .container {
     width: 100%;
-    max-width: 764px;
+    max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow-x: auto;
+    padding: 0 20px;
 }
-body {
-    overflow-x: auto;
-    font-size: 16px;
-    align-items: center;
-    justify-content: center;
-    background-color: lightblue;
-    color: black;
+
+/* Header Section */
+.header-container {
+    background-color: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 100;
 }
-.centerTextFlex.textCol {
-    font-size: 22px;
-    background-color: black;
-    color: white;
-}
-.TMKLogo {
-    width: 250px;
-    height: 90px;
-    margin-right: 40px;
-}
+
 .flexRow {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 24px;
 }
+
 .imgCol {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
+
+.TMKLogo {
+    width: 250px;
+    height: 90px;
+    margin-right: 40px;
+}
+
+.centerTextFlex.textCol {
+    font-size: 22px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
 .textCol {
     flex: 2;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.HeaderTable {
+
+/* Sticky Navigation */
+.sticky-nav {
+    background-color: #34495e;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    padding: 0 20px;
+}
+
+.nav-btn {
+    background-color: transparent;
+    border: 2px solid #7f8c8d;
+    color: #ecf0f1;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: #3498db;
+    border-color: #3498db;
+    transform: translateY(-2px);
+}
+
+.nav-btn.active {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.icon {
+    font-size: 18px;
+}
+
+/* Page System */
+.page {
+    display: none;
+    padding: 30px 0;
+    min-height: 100vh;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Upload Section */
+.upload-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.upload-section h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.upload-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#csvFile {
+    display: none;
+}
+
+.upload-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.upload-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.file-name {
+    color: #27ae60;
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Table Section */
+.table-section {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.table-header {
+    background-color: #34495e;
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-header h3 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.table-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.save-btn, .export-btn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.save-btn:hover, .export-btn:hover {
+    background-color: #219a52;
+    transform: translateY(-1px);
+}
+
+.export-btn {
+    background-color: #e67e22;
+}
+
+.export-btn:hover {
+    background-color: #d68910;
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto;
+    padding: 20px 30px 30px 30px;
+    margin-top: 0;
+}
+
+.customer-table {
     width: 100%;
-    max-width: 764px;
     border-collapse: collapse;
-    margin: 24px auto 0 auto;
+    font-size: 14px;
+    min-width: 1000px;
+    table-layout: auto;
 }
-.HeaderTable th, .HeaderTable td {
-    border: 2px solid black;
+
+.customer-table th {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #34495e;
+    position: sticky;
+    top: 50px;
+    z-index: 10;
+    white-space: nowrap;
+    border-right: 3px solid #34495e;
+    min-width: 50px;
+}
+
+.customer-table th:last-child {
+    border-right: none;
+}
+
+/* Resizable column handle */
+.customer-table th::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -6px;
+    width: 12px;
+    height: 100%;
+    background-color: transparent;
+    cursor: col-resize;
+    user-select: none;
+    z-index: 15;
+}
+
+.customer-table th:hover::after {
+    background-color: rgba(127, 140, 141, 0.3);
+}
+
+.customer-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #ecf0f1;
+    vertical-align: middle;
+    text-align: center;
+    white-space: normal;
+    overflow: visible;
+    resize: horizontal;
+}
+
+/* ข้อความในคอลัมน์ข้อมูลลูกค้าให้ชิดซ้าย */
+.customer-table td:nth-child(1),
+.customer-table td:nth-child(2),
+.customer-table td:nth-child(3),
+.customer-table td:nth-child(4),
+.customer-table td:nth-child(5),
+.customer-table td:nth-child(6),
+.customer-table td:nth-child(7),
+.customer-table td:nth-child(8),
+.customer-table td:nth-child(9),
+.customer-table td:nth-child(10),
+.customer-table td:nth-child(11),
+.customer-table td:nth-child(12),
+.customer-table td:nth-child(13),
+.customer-table td:nth-child(14),
+.customer-table td:nth-child(15),
+.customer-table td:nth-child(16) {
+    text-align: left;
+    vertical-align: middle;
+    white-space: normal;
+    overflow: visible;
+}
+
+/* Hover effect */
+.customer-table td:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* กำหนดขนาดคอลัมน์เฉพาะ */
+.customer-table th:nth-child(1),
+.customer-table td:nth-child(1) {
+    width: 8%; /* CustomerID */
+}
+
+.customer-table th:nth-child(2),
+.customer-table td:nth-child(2) {
+    width: 12%; /* FullName */
+}
+
+.customer-table th:nth-child(3),
+.customer-table td:nth-child(3) {
+    width: 8%; /* RegisterDate */
+}
+
+.customer-table th:nth-child(4),
+.customer-table td:nth-child(4) {
+    width: 5%; /* Grade */
+}
+
+.customer-table th:nth-child(5),
+.customer-table td:nth-child(5) {
+    width: 6%; /* รหัส */
+}
+
+.customer-table th:nth-child(6),
+.customer-table td:nth-child(6) {
+    width: 8%; /* ชื่อกลุ่ม */
+}
+
+.customer-table th:nth-child(7),
+.customer-table td:nth-child(7) {
+    width: 8%; /* วันต้องติดตาม */
+}
+
+.customer-table th:nth-child(8),
+.customer-table td:nth-child(8) {
+    width: 6%; /* ขาดการนำส่ง */
+}
+
+.customer-table th:nth-child(9),
+.customer-table td:nth-child(9) {
+    width: 8%; /* โทรศัพท์ */
+}
+
+.customer-table th:nth-child(10),
+.customer-table td:nth-child(10) {
+    width: 10%; /* หน่วยงาน */
+}
+
+.customer-table th:nth-child(11),
+.customer-table td:nth-child(11) {
+    width: 8%; /* วันนำส่งล่าสุด */
+}
+
+.customer-table th:nth-child(12),
+.customer-table td:nth-child(12) {
+    width: 6%; /* ยอดนำส่งล่าสุด */
+}
+
+/* คอลัมน์ที่ผู้ใช้ป้อนข้อมูล */
+.customer-table .input-column {
+    width: 10%;
+    vertical-align: middle;
+    text-align: center;
+    white-space: normal;
+    overflow: visible;
+    padding: 12px 8px;
+    border-left: 2px solid #bdc3c7;
+}
+
+.customer-table .description-column {
+    width: 15%;
+    vertical-align: middle;
+    text-align: center;
+    white-space: normal;
+    overflow: visible;
+    padding: 12px 8px;
+    border-left: 2px solid #bdc3c7;
+}
+
+.customer-table .username-column {
+    width: 8%;
+    vertical-align: middle;
+    text-align: center;
+    white-space: normal;
+    overflow: visible;
+    padding: 12px 8px;
+    border-left: 2px solid #bdc3c7;
+}
+
+.customer-table .timestamp-column {
+    width: 10%;
+    vertical-align: middle;
+    text-align: center;
+    white-space: normal;
+    overflow: visible;
+    padding: 12px 8px;
+    border-left: 2px solid #bdc3c7;
+}
+
+.customer-table .action-column {
+    width: 8%;
+    vertical-align: middle;
+    text-align: center;
+    white-space: normal;
+    overflow: visible;
+    padding: 12px 8px;
+    border-left: 2px solid #bdc3c7;
+}
+
+.customer-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.customer-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Form Controls */
+.status-select {
+    width: 100%;
+    min-width: 150px;
+    padding: 10px 15px;
+    border: 2px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: white;
+    height: 45px;
+}
+
+.status-select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.status-select option[value="มีนำส่ง"] {
+    background-color: #d5f4e6;
+    color: #27ae60;
+}
+
+.status-select option[value="ขาดการนำส่ง"] {
+    background-color: #fadbd8;
+    color: #e74c3c;
+}
+
+.description-input, .username-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 2px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: none;
+    min-height: 35px;
+}
+
+.description-input {
+    min-height: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    resize: vertical;
+}
+
+.description-input:focus, .username-input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.timestamp-display {
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-size: 12px;
+    text-align: center;
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 45px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.row-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.save-row-btn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
     padding: 8px 12px;
-}
-.HeaderTable th {
-    background: red;
-}
-.HeaderTable input[type="text"] {
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     width: 100%;
-    box-sizing: border-box;
-    border: none;
-    outline: none;
-    padding: 4px 8px;
-    font-size: 1em;
-    background: lightgreen;
+    max-width: 80px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
-.HeaderTable input[type="number"] {
-    width: 100%;
-    box-sizing: border-box;
-    border: none;
-    outline: none;
-    padding: 4px 8px;
-    font-size: 1em;
-    background: yellow;
+
+.save-row-btn:hover {
+    background-color: #219a52;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.save-row-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.save-row-btn:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Export Section */
+.export-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.export-section h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.export-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .nav-container {
+        padding: 0 10px;
+    }
+
+    .nav-btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .upload-section, .table-container, .export-section {
+        padding: 20px;
+    }
+
+    .table-header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .customer-table {
+        font-size: 12px;
+    }
+
+    .customer-table th, .customer-table td {
+        padding: 8px 6px;
+    }
 }
