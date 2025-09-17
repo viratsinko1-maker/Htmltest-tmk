@@ -4,52 +4,92 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a simple HTML/CSS/JavaScript web application for customer tracking, specifically designed for a Thai business (TMK Group) to record customer follow-up activities. The application allows users to:
+This is a full-stack customer tracking web application designed for a Thai business (TMK Group). The application supports importing data from SQL Server views/tables, editing customer information in a web interface, and exporting enhanced data back to SQL Server.
 
-- Add and delete table rows dynamically
-- Input customer information (ID, name, days overdue, follow-up results)
-- Save row data to memory (displayed in alerts and console)
+**Key Features:**
+- Import data from SQL Server (Table1/View) with 5 columns
+- Web-based editing interface with 2 additional user-input columns
+- Export complete data (7 columns) to SQL Server (Table2)
+- Dynamic table management (add/delete rows)
+- Safe data workflow (source data protection)
 
 ## Architecture
 
-The project consists of three main files working together:
+The project is organized into separate frontend and backend components:
 
-- **test.html**: Main HTML structure with a data entry table and TMK Group branding
-- **JsTest.js**: JavaScript functionality for dynamic row management and data saving
-- **csstest.css**: Styling for the interface with Thai business-appropriate colors and layout
+### Frontend (`frontend/` directory)
+- **test.html**: Main HTML interface with data entry table and TMK Group branding
+- **JsTest.js**: JavaScript for table manipulation and API communication
+- **csstest.css**: Styling with Thai business-appropriate design
 
-## Key Technical Details
+### Backend (`backend/` directory)
+- **server.js**: Node.js Express server with SQL Server integration
+- **package.json**: Node.js dependencies and scripts
+- **.env**: Database connection configuration (not committed)
 
-### File Structure
+## File Structure
 ```
-├── test.html       # Main HTML page with table structure
-├── JsTest.js       # JavaScript for table manipulation
-└── csstest.css     # Styling and layout
+├── frontend/
+│   ├── test.html       # Main web interface
+│   ├── JsTest.js       # Frontend JavaScript
+│   └── csstest.css     # Styling
+├── backend/
+│   ├── server.js       # Express API server
+│   ├── package.json    # Node.js configuration
+│   └── .env           # Database credentials (local only)
+├── .gitignore         # Excludes node_modules and .env
+└── CLAUDE.md          # This file
 ```
 
-### Data Flow
-- User interactions trigger JavaScript functions (`addRow()`, `deleteRow()`, `saveRow()`)
-- Data is stored in the `savedRows` array in memory
-- No backend persistence - data is lost on page refresh
+## Data Flow & Workflow
 
-### UI Components
-- Responsive table with customer input fields
-- Thai language placeholders and labels
-- Color-coded input fields (yellow for numbers, light green for text)
-- TMK Group logo integration from CDN
+1. **Import**: Backend fetches data from SQL Server Table1/View (5 columns)
+2. **Edit**: Frontend displays data with 2 additional editable columns
+3. **Export**: Backend saves complete data (7 columns) to Table2
+4. **Safety**: Source data (Table1) remains unchanged
+
+### API Endpoints
+- `GET /api/customers` - Import data from Table1/View
+- `POST /api/customers` - Export data to Table2
+- `PUT /api/customers/:id` - Update existing records
+- `DELETE /api/customers/:id` - Delete records from Table2
 
 ## Common Development Commands
 
-Since this is a static HTML/CSS/JavaScript project with no build system:
+### Backend Development
+```bash
+cd backend
+npm install          # Install dependencies
+npm start           # Start server (production)
+npm run dev         # Start server with auto-reload
+```
 
-- **View the application**: Open `test.html` in a web browser
-- **No build process required**: Changes to files are immediately reflected on browser refresh
-- **No package manager**: Pure vanilla JavaScript with no dependencies
+### Frontend Development
+- Open `frontend/test.html` in browser
+- Or access via backend server: `http://localhost:3000`
+
+### Database Setup
+1. Configure SQL Server connection in `backend/.env`
+2. Create Table1/View with 5 columns for import
+3. Create Table2 with 7 columns for export
+4. Test connection: `npm start` in backend directory
+
+## Environment Configuration
+
+Create `backend/.env` with your SQL Server details:
+```
+DB_USER=your-username
+DB_PASSWORD=your-password
+DB_SERVER=your-server-name
+DB_DATABASE=your-database-name
+PORT=3000
+```
 
 ## Development Notes
 
-- All text content is in Thai language
-- Uses external CDN for TMK Group logo
-- Input validation is minimal (HTML5 type attributes only)
-- Data persistence would require backend integration
-- CSS uses inline styles mixed with external stylesheet
+- **Language**: Thai language interface with English backend
+- **Database**: SQL Server integration using mssql package
+- **Security**: Environment variables for credentials
+- **CORS**: Enabled for frontend-backend communication
+- **Static Files**: Frontend served through Express
+- **Git**: node_modules and .env excluded from version control
