@@ -1,0 +1,109 @@
+/* ...existing code... */
+.DeleteRowButton {
+    margin-left: 15px;
+    padding: 8px 24px;
+    font-size: 16px;
+    background: red;
+    color: wheat;
+    border: solid 1px black;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.DeleteRowButton:hover {
+    background: darkred;
+}
+.AddrowButton {
+    margin-top: 16px;
+    padding: 8px 24px;
+    font-size: 16px;
+    background: blue;
+    color: black;
+    border: solid 1px black;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.AddrowButton:hover {
+    background: darkblue;
+}
+.HeaderTable input::placeholder {
+    font-size: 12px;
+}
+.container {
+    width: 100%;
+    max-width: 764px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+}
+body {
+    overflow-x: auto;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue;
+    color: black;
+}
+.centerTextFlex.textCol {
+    font-size: 22px;
+    background-color: black;
+    color: white;
+}
+.TMKLogo {
+    width: 250px;
+    height: 90px;
+    margin-right: 40px;
+}
+.flexRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+.imgCol {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.textCol {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.HeaderTable {
+    width: 100%;
+    max-width: 764px;
+    border-collapse: collapse;
+    margin: 24px auto 0 auto;
+}
+.HeaderTable th, .HeaderTable td {
+    border: 2px solid black;
+    padding: 8px 12px;
+}
+.HeaderTable th {
+    background: red;
+}
+.HeaderTable input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    padding: 4px 8px;
+    font-size: 1em;
+    background: lightgreen;
+}
+.HeaderTable input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    padding: 4px 8px;
+    font-size: 1em;
+    background: yellow;
+}

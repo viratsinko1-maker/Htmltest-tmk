@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test HTMLkokokokoko</title>
+    <link rel="stylesheet" href="csstest.css">
+</head>
+<body>
+    <div style="display: flex; align-items:center">
+        <div class="container">
+            <div class="flexRow">
+                <div class="imgCol" style="display: flex; align-items: center;">
+                    <img class="TMKLogo" src="https://cdn.jsdelivr.net/gh/viratsinko1-maker/Htmltest-tmk@main/Logo%20TMK%20Group.png" alt="Logo TMK Group">
+                    <div class="centerTextFlex textCol" style="margin-left: 16px; display: flex; align-items: center; height: 50px;">
+                        บันทึกผลการติดตามลูกค้าประจำหน่วยงาน
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="HeaderTable" id="HeaderTable">
+        <tr>
+            <th>Customers ID</th>
+            <th>Full Name</th>
+            <th>ขาดนำส่ง</th>
+            <th>ผลการติดตาม</th>
+        </tr>
+        <tr>
+            <td><input type="number" placeholder="เลขลูกค้า" /></td>
+            <td><input type="text" placeholder="ชื่อลูกค้า" /></td>
+            <td><input type="number" placeholder="ขาดนำส่งกี่วัน"/></td>
+            <td><input type="text" placeholder="ผลการติดตาม" /></td>
+            <td><button class="SaveRowButton" onclick="saveRow(this)">บันทึก</button></td>
+        </tr>
+    </table>
+    <button class="AddrowButton" onclick="addRow()">AddRow</button>
+    <button class="DeleteRowButton" onclick="deleteRow()">DeleteRow</button>
+<script src="JsTest.js"></script>
+</body>
+</html>
