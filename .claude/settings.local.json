@@ -8,7 +8,6 @@
       "Bash(git pull:*)",
       "Bash(node:*)",
       "Bash(npm:*)",
-      "Bash(move test.html frontend/)",
       "Bash(move:*)",
       "Bash(git reset:*)"
     ],
